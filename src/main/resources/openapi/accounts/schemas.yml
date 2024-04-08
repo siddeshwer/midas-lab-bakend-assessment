@@ -18,6 +18,11 @@ components:
           description: "Email of user"
           example: "john@doe.com"
           required: true
+        providerType:
+          type: string
+          description: "Payment Provider type"
+          example: "stripe"
+          required: true
     account:
       type: object
       properties:

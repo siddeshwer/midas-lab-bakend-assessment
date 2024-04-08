@@ -1,6 +1,7 @@
 package com.midas.app.workflows;
 
 import com.midas.app.models.Account;
+import com.stripe.exception.StripeException;
 import io.temporal.workflow.WorkflowInterface;
 import io.temporal.workflow.WorkflowMethod;
 
@@ -15,5 +16,5 @@ public interface CreateAccountWorkflow {
    * @return Account
    */
   @WorkflowMethod
-  Account createAccount(Account details);
+  Account createAccount(Account details) throws StripeException;
 }

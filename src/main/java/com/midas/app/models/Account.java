@@ -29,6 +29,12 @@ public class Account {
   @Column(name = "email")
   private String email;
 
+  @Column(name = "provider_id")
+  private String providerId;
+
+  @Column(name = "provider_type")
+  private String providerType;
+
   @Column(name = "created_at")
   @CreationTimestamp
   private OffsetDateTime createdAt;

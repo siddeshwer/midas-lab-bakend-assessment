@@ -8,11 +8,13 @@ import com.midas.generated.model.AccountDto;
 import com.midas.generated.model.CreateAccountDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,6 +29,8 @@ public class AccountController implements AccountsApi {
    * @param createAccountDto User account details (required)
    * @return User account created (status code 201)
    */
+  @SneakyThrows
+  @PostMapping("/accounts")
   @Override
   public ResponseEntity<AccountDto> createUserAccount(CreateAccountDto createAccountDto) {
     logger.info("Creating account for user with email: {}", createAccountDto.getEmail());
@@ -37,6 +41,7 @@ public class AccountController implements AccountsApi {
                 .firstName(createAccountDto.getFirstName())
                 .lastName(createAccountDto.getLastName())
                 .email(createAccountDto.getEmail())
+                .providerType(createAccountDto.getProviderType().toString())
                 .build());
 
     return new ResponseEntity<>(Mapper.toAccountDto(account), HttpStatus.CREATED);
